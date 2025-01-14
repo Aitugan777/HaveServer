@@ -1,0 +1,7 @@
+# Игнорировать файлы и папки Visual Studio
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.userprefs
