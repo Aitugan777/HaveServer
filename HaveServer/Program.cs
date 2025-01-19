@@ -42,6 +42,17 @@ namespace HaveServer
 
             builder.Services.AddControllers();
 
+            // Добавление CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()   // Разрешить запросы с любых доменов
+                          .AllowAnyHeader()   // Разрешить любые заголовки
+                          .AllowAnyMethod();  // Разрешить любые методы (GET, POST, PUT и т.д.)
+                });
+            });
+
             // Для работы с Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -57,6 +68,9 @@ namespace HaveServer
 
             // Добавляем UseRouting до использования аутентификации и авторизации
             app.UseRouting();
+
+            // Включение CORS
+            app.UseCors();
 
             // Включаем аутентификацию и авторизацию
             app.UseAuthentication();

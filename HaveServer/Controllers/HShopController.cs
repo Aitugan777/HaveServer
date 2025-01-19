@@ -1,4 +1,5 @@
-﻿using HaveServer.Data;
+﻿using HaveServer.ActionFilters;
+using HaveServer.Data;
 using HaveServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace HaveServer.Controllers
         }
 
         [HttpPost]
+        [ShopOwnership]
         public async Task<IActionResult> AddShop(HShop shop)
         {
             _context.Shops.Add(shop);
