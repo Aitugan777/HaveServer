@@ -1,31 +1,46 @@
-﻿using HaveServer.Models;
+﻿using AitukServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace HaveServer.Data
+namespace AitukServer.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<HSeller> Sellers { get; set; }
-        public DbSet<HShop> Shops { get; set; }
-        public DbSet<HProduct> Products { get; set; }
-        public DbSet<HCategory> Categories { get; set; }
+        public DbSet<ASeller> Sellers { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public DbSet<AProduct> Products { get; set; }
+        public DbSet<AProductSize> ProductSizes { get; set; }
+        public DbSet<AProductPhoto> ProductPhotos { get; set; }
+        public DbSet<AProductShop> ProductShops { get; set; }
+
+        public DbSet<AShop> Shops { get; set; }
+        public DbSet<AShopPhoto> ShopPhotos { get; set; }
+
+        public DbSet<AColor> Colors { get; set; }
+        public DbSet<ASize> Sizes { get; set; }
+        public DbSet<AGender> Genders { get; set; }
+        public DbSet<ACategory> Categories { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<AProductShop>()
+                .HasKey(ps => new { ps.ProductId, ps.ShopId });
 
-            // Указываем точность и масштаб для свойства 'Cost' в HProduct
-            modelBuilder.Entity<HProduct>()
-                .Property(p => p.Cost)
-                .HasColumnType("decimal(18,2)"); // Явно указываем тип данных и точность
+            modelBuilder.Entity<AProductShop>()
+                .HasOne(ps => ps.Product)
+                .WithMany(p => p.ProductShops)
+                .HasForeignKey(ps => ps.ProductId);
 
-            // Альтернативное использование HasPrecision для задания точности и масштаба
-            modelBuilder.Entity<HProduct>()
-                .Property(p => p.Cost)
-                .HasPrecision(18, 2); // Устанавливаем точность 18 и масштаб 2
+            modelBuilder.Entity<AProductShop>()
+                .HasOne(ps => ps.Shop)
+                .WithMany(s => s.ProductShops)
+                .HasForeignKey(ps => ps.ShopId);
         }
     }
+
 }

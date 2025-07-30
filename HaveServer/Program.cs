@@ -1,4 +1,4 @@
-using HaveServer.Data;
+using AitukServer.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text;
 
-namespace HaveServer
+namespace AitukServer
 {
     public class Program
     {
@@ -21,7 +21,12 @@ namespace HaveServer
 
             // Добавление сервисов в контейнер
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("AitukServerDB")));
+
+            builder.Services.AddScoped<ShopRepository>();
+            builder.Services.AddScoped<ProductRepository>();
+            builder.Services.AddScoped<ClothPropertiesRepository>();
+            builder.Services.AddScoped<ImageRepository>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -29,7 +34,7 @@ namespace HaveServer
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters
-                    {
+                    { 
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,

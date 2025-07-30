@@ -1,6 +1,6 @@
-@HaveServer_HostAddress = http://localhost:5250
+@AitukServer_HostAddress = http://localhost:5250
 
-GET {{HaveServer_HostAddress}}/weatherforecast/
+GET {{AitukServer_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

@@ -1,4 +1,4 @@
-﻿using HaveServer.Data;
+﻿using AitukServer.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace HaveServer.Controllers
+namespace AitukServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -23,10 +23,10 @@ namespace HaveServer.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel login)
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
         {
             // Здесь проверяем данные пользователя (из базы данных)
-            var seller = _context.Sellers.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
+            var seller = await _context.Sellers.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefaultAsync();
             if (seller != null)
             {
                 var token = GenerateJwtToken(seller.Id.ToString());

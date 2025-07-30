@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aituk\\Desktop\\C#\\WebApi\\HaveServer\\HaveServer.csproj": {}
+    "C:\\Users\\Aituk\\source\\repos\\HaveServer\\HaveServer\\HaveServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aituk\\Desktop\\C#\\WebApi\\HaveServer\\HaveServer.csproj": {
+    "C:\\Users\\Aituk\\source\\repos\\HaveServer\\HaveServer\\HaveServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aituk\\Desktop\\C#\\WebApi\\HaveServer\\HaveServer.csproj",
+        "projectUniqueName": "C:\\Users\\Aituk\\source\\repos\\HaveServer\\HaveServer\\HaveServer.csproj",
         "projectName": "HaveServer",
-        "projectPath": "C:\\Users\\Aituk\\Desktop\\C#\\WebApi\\HaveServer\\HaveServer.csproj",
+        "projectPath": "C:\\Users\\Aituk\\source\\repos\\HaveServer\\HaveServer\\HaveServer.csproj",
         "packagesPath": "C:\\Users\\Aituk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aituk\\Desktop\\C#\\WebApi\\HaveServer\\obj\\",
+        "outputPath": "C:\\Users\\Aituk\\source\\repos\\HaveServer\\HaveServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -75,6 +75,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

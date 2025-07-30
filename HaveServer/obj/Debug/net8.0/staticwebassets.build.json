@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "TYho1nfc7OnrJgm92oguWtkT37YwIrKw5+WuajVoWgs=",
-  "Source": "HaveServer",
-  "BasePath": "_content/HaveServer",
+  "Hash": "qqXaQnfdPEDUxYj+yP3ib0WeraRJ7KWgbBKWMkUITDw=",
+  "Source": "AitukServer",
+  "BasePath": "_content/AitukServer",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

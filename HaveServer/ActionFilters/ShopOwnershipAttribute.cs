@@ -1,9 +1,9 @@
-﻿using HaveServer.Data;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using HaveServer.Models;
+using AitukServer.Models;
+using AitukServer.Data;
 
-namespace HaveServer.ActionFilters
+namespace AitukServer.ActionFilters
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ShopOwnershipAttribute : Attribute, IAsyncActionFilter
@@ -22,7 +22,7 @@ namespace HaveServer.ActionFilters
             }
 
             // Проверяем, передано ли тело запроса
-            if (!context.ActionArguments.TryGetValue("model", out var model) || model is not IEnumerable<HShop> shops)
+            if (!context.ActionArguments.TryGetValue("model", out var model) || model is not IEnumerable<AShop> shops)
             {
                 context.Result = new BadRequestObjectResult("Invalid request body.");
                 return;

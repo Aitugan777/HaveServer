@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HaveServer.Models
+namespace AitukServer.Models
 {
-    public class HSeller
+    public class ASeller
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [EmailAddress]
@@ -17,12 +17,6 @@ namespace HaveServer.Models
         [Required]
         public string Password { get; set; }
 
-        public string LastName { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string SecondName { get; set; }
-
-        public List<HShop> Shops { get; set; }
+        public string FullName { get; set; }
     }
 }
