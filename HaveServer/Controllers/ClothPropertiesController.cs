@@ -60,5 +60,4 @@ namespace AitukServer.Controllers
             return Ok(colors);
         }
     }
-
 }

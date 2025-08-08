@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AitukServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90ead95df00cd81da4e18852499210ef9344e6bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b83788fad7702fb96e3f765f0676f0be8b84e0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AitukServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AitukServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,7 +10,7 @@ namespace AitukServer.Models
         public long ProductId { get; set; }
         public AProduct Product { get; set; }
 
-        public long ProductCount { get; set; }
+        public int ProductCount { get; set; }
 
         public long ShopId { get; set; }
         public AShop Shop { get; set; }

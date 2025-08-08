@@ -23,6 +23,9 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Photos\Product\5\" />
+    <Folder Include="Photos\Product\6\" />
+    <Folder Include="Photos\Product\7\" />
   </ItemGroup>
 
   <ItemGroup>

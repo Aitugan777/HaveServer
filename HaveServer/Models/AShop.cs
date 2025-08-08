@@ -14,7 +14,10 @@ namespace AitukServer.Models
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
 
+        public ICollection<AShopContact> Contacts { get; set; }
         public ICollection<AShopPhoto> Photos { get; set; }
         public ICollection<AProductShop> ProductShops { get; set; }
+
+        public AWorkSheldure WorkSheldure { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace AitukServer
             builder.WebHost.ConfigureKestrel(options =>
             {
                 options.Listen(IPAddress.Any, 5070);  // Настроить прослушивание на все IP
+                options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(5);
             });
 
             // Добавление сервисов в контейнер
@@ -27,6 +28,8 @@ namespace AitukServer
             builder.Services.AddScoped<ProductRepository>();
             builder.Services.AddScoped<ClothPropertiesRepository>();
             builder.Services.AddScoped<ImageRepository>();
+
+            builder.Services.AddHttpClient();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

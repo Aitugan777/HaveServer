@@ -18,7 +18,7 @@ namespace AitukServer.Data
         {
             if (_initialized) return;
 
-            if (_dbContext.Categories.Any()) return; 
+            if (await _dbContext.Categories.AnyAsync()) return; 
 
             // Размеры
             if (!await _dbContext.Sizes.AnyAsync())

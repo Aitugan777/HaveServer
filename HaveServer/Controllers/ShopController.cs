@@ -77,6 +77,19 @@ namespace AitukServer.Controllers
             return NoContent();
         }
 
+
+        [HttpGet("contactTypes")]
+        [Authorize]
+        public async Task<ActionResult<List<ContactTypeContract>>> GetContactTypes()
+        {
+            var sellerId = ExtractSellerIdFromToken();
+            if (sellerId == null)
+                return Unauthorized("SellerId not found in token.");
+
+            var contactTypes = await _shopRepository.GetContactTypeContracts();
+            return Ok(contactTypes);
+        }
+
         // ====== Вспомогательный метод ======
         private long? ExtractSellerIdFromToken()
         {

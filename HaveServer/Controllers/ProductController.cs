@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Web.Http.Cors;
 
 namespace AitukServer.Controllers
@@ -61,6 +62,42 @@ namespace AitukServer.Controllers
         {
             var products = await _productRepository.GetCompactProductsByShopsAsync(shopIds);
             return Ok(products);
+        }
+        
+        [HttpGet("for-this-seller")]
+        [Authorize]
+        public async Task<ActionResult<List<ProductCompactContract>>> GetAllProductsForSeller()
+        {
+            var sellerId = ExtractSellerIdFromToken();
+            if (sellerId == null)
+                return Unauthorized("SellerId not found in token.");
+
+            var shops = await _productRepository.GetCompactProductsBySellerAsync(sellerId.Value);
+            return Ok(shops);
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<List<ProductCompactContract>>> GetAllProductsForSeller([FromQuery] ProductFilterContract filter)
+        {
+            var products = await _productRepository.GetCompactProductsAsync(filter);
+            return Ok(products);
+        }
+
+        private long? ExtractSellerIdFromToken()
+        {
+            var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            if (string.IsNullOrWhiteSpace(token)) return null;
+
+            var handler = new JwtSecurityTokenHandler();
+            if (!handler.CanReadToken(token)) return null;
+
+            var jwtToken = handler.ReadToken(token) as JwtSecurityToken;
+            var sellerIdClaim = jwtToken?.Claims.FirstOrDefault(c => c.Type == "SellerId")?.Value;
+
+            if (long.TryParse(sellerIdClaim, out long sellerId))
+                return sellerId;
+
+            return null;
         }
     }
 
